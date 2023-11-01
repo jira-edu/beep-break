@@ -8,7 +8,7 @@ int beepPeriod;
 
 #define step1 150
 #define step2 100
-#define step3 30
+#define step3 50
 
 #include <Arduino_FreeRTOS.h>
 TaskHandle_t distanceRead_Handler;
@@ -89,6 +89,7 @@ void beepSound(void *pvParameters)
         digitalWrite(beepPin, HIGH);  
       } else {
         if (beepPeriod == 0) {
+          vTaskDelay( 1 / portTICK_PERIOD_MS );
           continue;
         }
         digitalWrite(beepPin, LOW);  
